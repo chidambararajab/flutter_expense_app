@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/widgets/user_tansaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,20 +21,17 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter App'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Container(
                 width: double.infinity,
                 child: Card(
                   color: Colors.blue,
-                  child: Text('Simple Card'),
+                  child: Text('Card'),
+                  elevation: 5,
                 )),
-            Container(
-                color: Colors.blue,
-                child: Card(
-                  child: Text('List of TX'),
-                ))
+            UserTransaction(),
           ],
         ));
   }
