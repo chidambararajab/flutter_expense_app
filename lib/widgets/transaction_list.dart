@@ -8,65 +8,66 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(children: <Widget>[
-        ...(transactions)
-            .map(
-              (transaction) => Card(
-                  child: Row(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    decoration: BoxDecoration(
-                        border: Border.all(
+      height: 250,
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Card(
+            child: Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                    color: Colors.purple,
+                    width: 1,
+                  )),
+                  child: Text(
+                    '\$ ${transactions[index].amount.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
                       color: Colors.purple,
-                      width: 1,
-                    )),
-                    child: Text(
-                      '\$ ${transaction.amount}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.purple,
-                      ),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        transaction.title,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      transactions[index].title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 0, vertical: 3),
+                      child: Text(
+                        DateFormat('dd/MMM/yyyy')
+                            .format(transactions[index].date),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.black,
+                          fontSize: 12,
+                          color: Colors.grey,
                         ),
                       ),
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 0, vertical: 3),
-                        child: Text(
-                          DateFormat('dd/MMM/yyyy').format(transaction.date),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              )),
-            )
-            .toList(),
-      ]),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+        itemCount: transactions.length,
+      ),
     );
   }
 }
